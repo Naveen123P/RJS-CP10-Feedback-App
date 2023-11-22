@@ -1,0 +1,45 @@
+/* Write your CSS code here. */
+.bg-container1 {
+  height: 100vh;
+  background-image: linear-gradient(to right, #ffeeee, #ffc0bb);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bg-container2 {
+  width: 70%;
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+* {
+  font-family: 'Roboto';
+  text-align: center;
+}
+.heading {
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+}
+.emoji-container {
+  display: flex;
+  justify-content: space-around;
+}
+.emoji-img,
+.love-img {
+  height: 50px;
+  width: 50px;
+}
+.bottom-text {
+  font-size: small;
+}
+
+.display-thank {
+  display: none;
+}
+.display-emoji {
+  display: none;
+}

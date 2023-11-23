@@ -13,11 +13,13 @@ class Feedback extends Component {
     const {resources} = this.props
     const {emojis, loveEmojiUrl} = resources
     const {isGiven} = this.state
+    const displayItem1 = isGiven ? 'display-emoji' : ''
+    const displayItem2 = isGiven ? '' : 'display-thank'
     console.log(isGiven)
 
     return (
       <div className="bg-container1">
-        <div className={`bg-container2 ${''}`}>
+        <div className={`bg-container2 ${displayItem1}`}>
           <h1 className="heading">
             How satisfied are you with our customer support performance
           </h1>
@@ -41,7 +43,7 @@ class Feedback extends Component {
             ))}
           </ul>
         </div>
-        <div className={`bg-container2 ${''}`}>
+        <div className={`bg-container2 ${displayItem2}`}>
           <img src={loveEmojiUrl} alt="love emoji" className="love-img" />
           <h1 className="heading">Thank you!</h1>
           <p className="bottom-text">

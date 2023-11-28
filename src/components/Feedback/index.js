@@ -1,59 +1,78 @@
-// Write your React code here.
 import {Component} from 'react'
+
 import './index.css'
 
-class Feedback extends Component {
-  state = {isGiven: false}
+const countryAndCapitalsList = [
+  {
+    id: 'NEW_DELHI',
+    capitalDisplayText: 'New Delhi',
+    country: 'India',
+  },
+  {
+    id: 'LONDON',
+    capitalDisplayText: 'London',
+    country: 'United Kingdom',
+  },
+  {
+    id: 'PARIS',
+    capitalDisplayText: 'Paris',
+    country: 'France',
+  },
+  {
+    id: 'KATHMANDU',
+    capitalDisplayText: 'Kathmandu',
+    country: 'Nepal',
+  },
+  {
+    id: 'HELSINKI',
+    capitalDisplayText: 'Helsinki',
+    country: 'Finland',
+  },
+]
 
-  feedbackGiven = () => {
-    this.setState(pervState => ({isGiven: !pervState.isGiven}))
+// Write your code here
+
+class Capitals extends Component {
+  state = {
+    countryName: countryAndCapitalsList[0].capitalDisplayText,
+  }
+
+  changeCountry = event => {
+    this.setState({countryName: event.target.value})
+  }
+
+  changeCapital = () => {
+    const {countryName} = this.state
+    console.log(countryName)
+    const theCapitalIs = countryAndCapitalsList.filter(
+      each => each.capitalDisplayText === countryName,
+    )
+    return theCapitalIs[0]
   }
 
   render() {
-    const {resources} = this.props
-    const {emojis, loveEmojiUrl} = resources
-    const {isGiven} = this.state
-    const displayItem1 = isGiven ? 'display-emoji' : ''
-    const displayItem2 = isGiven ? '' : 'display-thank'
-    console.log(isGiven)
-
+    const theCapitalIs = this.changeCapital()
     return (
       <div className="bg-container1">
-        <div className={`bg-container2 ${displayItem1}`}>
-          <h1 className="heading">
-            How satisfied are you with our customer support performance
-          </h1>
-          <ul className="emoji-container">
-            {emojis.map(each => (
-              <li className="emoji-list">
-                <button
-                  className="button"
-                  type="button"
-                  onClick={this.feedbackGiven}
-                  key={each.id}
-                >
-                  <img
-                    src={each.imageUrl}
-                    alt={each.name}
-                    className="emoji-img"
-                  />
-                  <p className="eomji-name">{each.name}</p>
-                </button>
-              </li>
+        <div className="bg-container2">
+          <h1>Countries And Capitals</h1>
+          <select
+            className="form-control"
+            id="countries"
+            onChange={this.changeCountry}
+          >
+            {countryAndCapitalsList.map(eachCountry => (
+              <option value={eachCountry.id} key={eachCountry.id}>
+                {eachCountry.capitalDisplayText}
+              </option>
             ))}
-          </ul>
-        </div>
-        <div className={`bg-container2 ${displayItem2}`}>
-          <img src={loveEmojiUrl} alt="love emoji" className="love-img" />
-          <h1 className="heading">Thank you!</h1>
-          <p className="bottom-text">
-            We will use your feedback to improve our customer support
-            performance.
-          </p>
+          </select>
+          <p>is capital of which country?</p>
+          <p>{theCapitalIs.country}</p>
         </div>
       </div>
     )
   }
 }
 
-export default Feedback
+export default Capitals
